@@ -52,18 +52,27 @@ function ajouterAuPanier(nomProduit, prixProduit) {
 function afficherPanier() {
   const panier = JSON.parse(localStorage.getItem("panier")) || [];
   const listePanier = document.getElementById("liste-panier");
+  let total = 0;
 
   if (listePanier) {
     listePanier.innerHTML = panier
-      .map(
-        (item) => `
-          <div class="panier-item">
-            <p>Produit : ${item.nom} - Quantité: ${item.quantite} - Prix : ${item.prix}</p>
-            <button onclick="retirerDuPanier('${item.nom}')">Retirer</button>
-          </div>
-        `
-      )
+      .map((item) => {
+        const prixTrim = parseFloat(
+          item.prix.trim().replace("€", "").replace(" ", "")
+        );
+        const montantArticle = prixTrim * item.quantite;
+        total += montantArticle;
+
+        return `
+            <div class="panier-item">
+              <p>Produit : ${item.nom} - Quantité: ${item.quantite} - Prix : ${item.prix} </p>
+              <button onclick="retirerDuPanier('${item.nom}')">Retirer</button>
+            </div>
+          `;
+      })
       .join("");
+
+    listePanier.innerHTML += `<h3>Total du Panier : ${total.toFixed(2)} €</h3>`;
   }
 }
 
@@ -98,12 +107,28 @@ if (document.title === "Panier") {
     const numeroCommande = Math.floor(Math.random() * 100000);
 
     const panier = JSON.parse(localStorage.getItem("panier")) || [];
-    const recapPanier = panier
-      .map((item) => `${item.nom} (Quantité: ${item.quantite})`)
-      .join(", ");
+    let recapPanier = "";
+    let total = 0;
+
+    panier.forEach((item) => {
+      const prixNettoye = parseFloat(
+        item.prix.trim().replace("€", "").replace(" ", "")
+      );
+      const montantArticle = prixNettoye * item.quantite;
+      total += montantArticle;
+
+      recapPanier += `
+          Nom : ${item.nom}
+          Quantité : ${item.quantite}
+          Prix : ${item.prix}
+          Montant : ${montantArticle.toFixed(2)} €
+          \n`;
+    });
+
+    recapPanier += `Total du Panier : ${total.toFixed(2)} €`;
 
     alert(
-      `Commande confirmée !\nNuméro de commande : ${numeroCommande}\nNom : ${nom}\nAdresse : ${adresse}\nContact : ${contact}\nProduits : ${recapPanier}`
+      `Commande confirmée !\nNuméro de commande : ${numeroCommande}\nNom : ${nom}\nAdresse : ${adresse}\nContact : ${contact}\nProduits : \n${recapPanier}`
     );
 
     document.getElementById("popup-commande").classList.add("hidden");
