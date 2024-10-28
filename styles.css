@@ -70,13 +70,27 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
-
 .panier-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #eee;
+}
+
+.panier-item img {
+  width: 50%;
+  height: 50%;
+  margin-right: 10px;
+}
+
+.panier-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.panier-item button {
+  margin-left: auto;
 }
 
 button#valider-commande {

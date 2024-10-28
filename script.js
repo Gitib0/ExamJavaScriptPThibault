@@ -24,7 +24,7 @@ function afficherProduits(produits) {
           <li>Écran: ${produit.caracteristiques.écran}</li>
         </ul>
         <p>Prix: ${produit.prix}</p>
-        <button onclick="ajouterAuPanier('${produit.nom_produit}' , '${produit.prix}')">Ajouter au Panier</button>
+        <button onclick="ajouterAuPanier('${produit.nom_produit}' , '${produit.prix}' , '${produit.image}')">Ajouter au Panier</button>
       </div>
     `
     )
@@ -34,14 +34,18 @@ if (document.title === "Liste des Appareils photos banger") {
   chargerProduits();
 }
 
-function ajouterAuPanier(nomProduit, prixProduit) {
+function ajouterAuPanier(nomProduit, prixProduit, produitImage) {
   const panier = JSON.parse(localStorage.getItem("panier")) || [];
   const produit = panier.find((p) => p.nom === nomProduit);
-  console.log(produit);
   if (produit) {
     produit.quantite += 1;
   } else {
-    panier.push({ nom: nomProduit, quantite: 1, prix: prixProduit });
+    panier.push({
+      nom: nomProduit,
+      quantite: 1,
+      prix: prixProduit,
+      image: produitImage,
+    });
   }
 
   localStorage.setItem("panier", JSON.stringify(panier));
@@ -65,7 +69,12 @@ function afficherPanier() {
 
         return `
             <div class="panier-item">
-              <p>Produit : ${item.nom} - Quantité: ${item.quantite} - Prix : ${item.prix} </p>
+            <img src="${item.image}" alt="${item.nom}">
+            <div class="panier-info">
+              <p>Produit : ${item.nom}</p>
+               <p>Quantité: ${item.quantite}</p>
+                <p>Prix : ${item.prix} </p>
+              </div>
               <button onclick="retirerDuPanier('${item.nom}')">Retirer</button>
             </div>
           `;
