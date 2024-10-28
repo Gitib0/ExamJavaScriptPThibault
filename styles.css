@@ -96,6 +96,7 @@ button#valider-commande:hover {
 
 .popup {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -108,6 +109,8 @@ button#valider-commande:hover {
 }
 
 .popup form {
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;

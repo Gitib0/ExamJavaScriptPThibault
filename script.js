@@ -24,7 +24,7 @@ function afficherProduits(produits) {
           <li>Écran: ${produit.caracteristiques.écran}</li>
         </ul>
         <p>Prix: ${produit.prix}</p>
-        <button onclick="ajouterAuPanier('${produit.nom_produit}')">Ajouter au Panier</button>
+        <button onclick="ajouterAuPanier('${produit.nom_produit}' , '${produit.prix}')">Ajouter au Panier</button>
       </div>
     `
     )
@@ -34,19 +34,19 @@ if (document.title === "Liste des Appareils photos banger") {
   chargerProduits();
 }
 
-function ajouterAuPanier(nomProduit) {
+function ajouterAuPanier(nomProduit, prixProduit) {
   const panier = JSON.parse(localStorage.getItem("panier")) || [];
   const produit = panier.find((p) => p.nom === nomProduit);
-
+  console.log(produit);
   if (produit) {
     produit.quantite += 1;
   } else {
-    panier.push({ nom: nomProduit, quantite: 1 });
+    panier.push({ nom: nomProduit, quantite: 1, prix: prixProduit });
   }
 
   localStorage.setItem("panier", JSON.stringify(panier));
   afficherPanier();
-  alert(nomProduit + " ajouté au panier !");
+  alert(nomProduit + " " + prixProduit + " ajouté au panier !");
 }
 
 function afficherPanier() {
@@ -54,12 +54,11 @@ function afficherPanier() {
   const listePanier = document.getElementById("liste-panier");
 
   if (listePanier) {
-    // Vérifiez que listePanier n'est pas null
     listePanier.innerHTML = panier
       .map(
         (item) => `
           <div class="panier-item">
-            <p>Produit : ${item.nom} - Quantité: ${item.quantite}</p>
+            <p>Produit : ${item.nom} - Quantité: ${item.quantite} - Prix : ${item.prix}</p>
             <button onclick="retirerDuPanier('${item.nom}')">Retirer</button>
           </div>
         `
@@ -80,34 +79,7 @@ function retirerDuPanier(nomProduit) {
   afficherPanier();
 }
 
-afficherPanier();
-
 if (document.title === "Panier") {
-  document.getElementById("commande-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const formulaire = new FormData(e.target);
-    const nom = formulaire.get("nom");
-    const adresse = formulaire.get("adresse");
-    const contact = formulaire.get("contact");
-
-    const panier = JSON.parse(localStorage.getItem("panier")) || [];
-    const numeroCommande = Math.floor(Math.random() * 100000);
-
-    const recap = `
-      <h2>Récapitulatif de Commande</h2>
-      <p>Numéro de commande: ${numeroCommande}</p>
-      <p>Nom: ${nom}</p>
-      <p>Adresse: ${adresse}</p>
-      <p>Contact: ${contact}</p>
-      <p>Articles Commandés: ${JSON.stringify(panier)}</p>
-    `;
-    document.getElementById("recapitulatif-commande").innerHTML = recap;
-
-    localStorage.removeItem("panier");
-    afficherPanier();
-  });
-
   document.getElementById("valider-commande").addEventListener("click", () => {
     document.getElementById("popup-commande").classList.remove("hidden");
   });
