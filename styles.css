@@ -25,14 +25,11 @@ header {
   position: relative;
   bottom: 0;
   width: 100%;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .site-footer p {
   margin: 0;
-}
-
-.site-footer {
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .produits-container {
@@ -86,7 +83,7 @@ header {
   width: 100%;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: auto; 
+  margin-top: auto;
 }
 
 .produit .ajouter-panier:hover,
@@ -153,7 +150,7 @@ header {
 
 .panier-item img {
   width: 50%;
-  height: 50%;
+  height: auto;
   margin-right: 10px;
 }
 
@@ -264,11 +261,41 @@ button#valider-commande:hover {
   gap: 20px;
   padding: 20px;
   margin-bottom: 20px;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
+.vedette-title {
+  text-align: center;
+  color: #333;
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
 
 .vedette {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; 
+  width: 200px;
+  background-color: #ffe5b4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 2px solid #f0ad4e;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  padding: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vedette:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  background-color: #ffdbac;
+}
+
+.vedette img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.vedette:hover img {
+  transform: scale(1.05);
 }
