@@ -29,6 +29,9 @@ header {
   text-align: center;
   padding: 10px;
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .produit img {
@@ -43,9 +46,10 @@ header {
 
 .produit p {
   color: #555;
+  flex-grow: 1;
 }
 
-.produit button {
+.produit .ajouter-panier {
   background-color: #333;
   color: #fff;
   border: none;
@@ -53,15 +57,53 @@ header {
   width: 100%;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: auto;
 }
 
-.produit button:hover {
+.produit .ajouter-panier:hover {
   background-color: #555;
+}
+
+.en-savoir-plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.details-btn {
+  width: 25px;
+  height: 25px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.en-savoir-plus span {
+  color: #333;
+  font-size: 0.9em;
+  cursor: pointer;
 }
 
 .produit:hover {
   transform: translateY(-5px);
 }
+
+.details {
+  display: none;
+  color: #555;
+  font-size: 0.9em;
+  margin-top: 10px;
+  text-align: left;
+}
+
 .panier-container {
   max-width: 600px;
   margin: 20px auto;

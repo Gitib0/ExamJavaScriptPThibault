@@ -168,30 +168,6 @@
       "image": "images/camera14.jpg"
     },
     {
-      "nom_produit": "Lumix Pro DMC-GH5",
-      "descriptif": "Hybride de haute qualité pour les professionnels de la vidéo et de la photographie.",
-      "caracteristiques": {
-        "résolution": "25 MP",
-        "zoom": "Optique 10x",
-        "connectivité": "Wi-Fi, Bluetooth",
-        "écran": "3.2 pouces"
-      },
-      "prix": "1699.99 €",
-      "image": "images/camera15.jpg"
-    },
-    {
-      "nom_produit": "Lumix Pro DMC-GH5",
-      "descriptif": "Hybride de haute qualité pour les professionnels de la vidéo et de la photographie.",
-      "caracteristiques": {
-        "résolution": "25 MP",
-        "zoom": "Optique 10x",
-        "connectivité": "Wi-Fi, Bluetooth",
-        "écran": "3.2 pouces"
-      },
-      "prix": "1999.99 €",
-      "image": "images/camera16.jpg"
-    },
-    {
       "nom_produit": "Lumix Pro DMC-GH15",
       "descriptif": "Hybride de haute qualité pour les professionnels de la vidéo et de la photographie.",
       "caracteristiques": {
@@ -202,18 +178,6 @@
       },
       "prix": "1399.99 €",
       "image": "images/camera17.jpg"
-    },
-    {
-      "nom_produit": "Lumix Pro DMC-GH5",
-      "descriptif": "Hybride de haute qualité pour les professionnels de la vidéo et de la photographie.",
-      "caracteristiques": {
-        "résolution": "25 MP",
-        "zoom": "Optique 10x",
-        "connectivité": "Wi-Fi, Bluetooth",
-        "écran": "3.2 pouces"
-      },
-      "prix": "999.99 €",
-      "image": "images/camera15.jpg"
     },
     {
       "nom_produit": "Lumix Pro DMC-GH51",

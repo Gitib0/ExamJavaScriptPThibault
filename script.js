@@ -17,18 +17,33 @@ function afficherProduits(produits) {
         <img src="${produit.image}" alt="${produit.nom_produit}">
         <h2>${produit.nom_produit}</h2>
         <p>${produit.descriptif}</p>
+        <div class="en-savoir-plus">
+         <button class="details-btn">+</button>
+         <span>de détails</span>
+         </div>
+        <div class="details">
         <ul class="caracteristiques">
           <li>Résolution: ${produit.caracteristiques.résolution}</li>
           <li>Zoom: ${produit.caracteristiques.zoom}</li>
           <li>Connectivité: ${produit.caracteristiques.connectivité}</li>
           <li>Écran: ${produit.caracteristiques.écran}</li>
         </ul>
+        </div>
         <p>Prix: ${produit.prix}</p>
         <button onclick="ajouterAuPanier('${produit.nom_produit}' , '${produit.prix}' , '${produit.image}')">Ajouter au Panier</button>
       </div>
     `
     )
     .join("");
+  document.querySelectorAll(".details-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      const details = button.parentElement.nextElementSibling;
+      details.style.display =
+        details.style.display === "none" || details.style.display === ""
+          ? "block"
+          : "none";
+    });
+  });
 }
 if (document.title === "Liste des Appareils photos banger") {
   chargerProduits();
