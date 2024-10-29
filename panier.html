@@ -14,25 +14,26 @@
         Retour à l'Index
       </button>
     </header>
+    <main>
+      <section id="liste-panier" class="panier-container"></section>
 
-    <section id="liste-panier" class="panier-container"></section>
+      <div id="popup-commande" class="popup hidden">
+        <form id="commande-form">
+          <h2>Valider la Commande</h2>
+          <label for="nom">Nom :</label>
+          <input type="text" id="nom" name="nom" required />
 
-    <div id="popup-commande" class="popup hidden">
-      <form id="commande-form">
-        <h2>Valider la Commande</h2>
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required />
+          <label for="adresse">Adresse :</label>
+          <input type="text" id="adresse" name="adresse" required />
 
-        <label for="adresse">Adresse :</label>
-        <input type="text" id="adresse" name="adresse" required />
+          <label for="contact">Contact :</label>
+          <input type="text" id="contact" name="contact" required />
 
-        <label for="contact">Contact :</label>
-        <input type="text" id="contact" name="contact" required />
-
-        <button type="submit">Valider la commande</button>
-        <button type="button" id="fermer-popup">Annuler</button>
-      </form>
-    </div>
+          <button type="submit">Valider la commande</button>
+          <button type="button" id="fermer-popup">Annuler</button>
+        </form>
+      </div>
+    </main>
     <footer class="site-footer">
       <p>
         &copy; 2024 IbSoftWareManagementTeamRpz. Tous droits réservés et
