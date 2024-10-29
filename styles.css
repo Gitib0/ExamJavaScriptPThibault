@@ -1,5 +1,6 @@
 body,
-html ,main{
+html,
+main {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -7,6 +8,7 @@ html ,main{
   flex-direction: column;
   min-height: 100vh;
 }
+
 header {
   text-align: center;
   padding: 20px;
@@ -41,7 +43,9 @@ header {
   gap: 20px;
   padding: 20px;
 }
-.produit {
+
+.produit,
+.vedette {
   width: 200px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -55,22 +59,26 @@ header {
   position: relative;
 }
 
-.produit img {
+.produit img,
+.vedette img {
   width: 100%;
   height: auto;
 }
 
-.produit h2 {
+.produit h2,
+.vedette h2 {
   font-size: 1.2em;
   margin: 10px 0;
 }
 
-.produit p {
+.produit p,
+.vedette p {
   color: #555;
   flex-grow: 1;
 }
 
-.produit .ajouter-panier {
+.produit .ajouter-panier,
+.vedette .ajouter-panier {
   background-color: #333;
   color: #fff;
   border: none;
@@ -78,10 +86,11 @@ header {
   width: 100%;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: auto;
+  margin-top: auto; 
 }
 
-.produit .ajouter-panier:hover {
+.produit .ajouter-panier:hover,
+.vedette .ajouter-panier:hover {
   background-color: #555;
 }
 
@@ -113,7 +122,8 @@ header {
   cursor: pointer;
 }
 
-.produit:hover {
+.produit:hover,
+.vedette:hover {
   transform: translateY(-5px);
 }
 
@@ -133,6 +143,7 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
+
 .panier-item {
   display: flex;
   align-items: center;
@@ -181,7 +192,7 @@ button#valider-commande:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
 
@@ -239,10 +250,25 @@ button#valider-commande:hover {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1000; /* S'assure que le bouton est visible */
+  z-index: 1000;
   transition: background-color 0.3s ease;
 }
 
 #consulter-panier:hover {
   background-color: #555;
+}
+
+.vedette-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+
+.vedette {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
 }

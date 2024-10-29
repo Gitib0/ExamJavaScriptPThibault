@@ -10,31 +10,72 @@ async function chargerProduits() {
 
 function afficherProduits(produits) {
   const listeProduits = document.getElementById("liste-produits");
-  listeProduits.innerHTML = produits
+  const produitsVedette = document.getElementById("produits-vedette");
+
+  function getRandomProducts(products, count) {
+    const shuffled = products.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+
+  const vedetteProduits = getRandomProducts(produits, 3);
+
+  produitsVedette.innerHTML = vedetteProduits
+    .map(
+      (produit) => `
+      <div class="vedette">
+          <img src="${produit.image}" alt="${produit.nom_produit}">
+          <h2>${produit.nom_produit}</h2>
+          <p>${produit.descriptif}</p>
+          <div class="en-savoir-plus">
+            <button class="details-btn">+</button>
+          <span>de détails</span>
+          </div>
+           <div class="details" style="display: none;">
+              <ul class="caracteristiques">
+                  <li>Résolution: ${produit.caracteristiques.résolution}</li>
+                  <li>Zoom: ${produit.caracteristiques.zoom}</li>
+                  <li>Connectivité: ${produit.caracteristiques.connectivité}</li>
+                  <li>Écran: ${produit.caracteristiques.écran}</li>
+              </ul>
+          </div>
+          <p>Prix: ${produit.prix}</p>
+          <button onclick="ajouterAuPanier('${produit.nom_produit}', '${produit.prix}', '${produit.image}')">Ajouter au Panier</button>
+      </div>
+  `
+    )
+    .join("");
+
+  const vedetteIds = vedetteProduits.map((prod) => prod.nom_produit);
+  const autresProduits = produits.filter(
+    (prod) => !vedetteIds.includes(prod.nom_produit)
+  );
+
+  listeProduits.innerHTML = autresProduits
     .map(
       (produit) => `
       <div class="produit">
-        <img src="${produit.image}" alt="${produit.nom_produit}">
-        <h2>${produit.nom_produit}</h2>
-        <p>${produit.descriptif}</p>
-        <div class="en-savoir-plus">
-         <button class="details-btn">+</button>
-         <span>de détails</span>
-         </div>
-        <div class="details">
-        <ul class="caracteristiques">
-          <li>Résolution: ${produit.caracteristiques.résolution}</li>
-          <li>Zoom: ${produit.caracteristiques.zoom}</li>
-          <li>Connectivité: ${produit.caracteristiques.connectivité}</li>
-          <li>Écran: ${produit.caracteristiques.écran}</li>
-        </ul>
-        </div>
-        <p>Prix: ${produit.prix}</p>
-        <button onclick="ajouterAuPanier('${produit.nom_produit}' , '${produit.prix}' , '${produit.image}')">Ajouter au Panier</button>
+          <img src="${produit.image}" alt="${produit.nom_produit}">
+          <h2>${produit.nom_produit}</h2>
+          <p>${produit.descriptif}</p>
+          <div class="en-savoir-plus">
+              <button class="details-btn">+</button>
+              <span>de détails</span>
+          </div>
+          <div class="details" style="display: none;">
+              <ul class="caracteristiques">
+                  <li>Résolution: ${produit.caracteristiques.résolution}</li>
+                  <li>Zoom: ${produit.caracteristiques.zoom}</li>
+                  <li>Connectivité: ${produit.caracteristiques.connectivité}</li>
+                  <li>Écran: ${produit.caracteristiques.écran}</li>
+              </ul>
+          </div>
+          <p>Prix: ${produit.prix}</p>
+          <button onclick="ajouterAuPanier('${produit.nom_produit}', '${produit.prix}', '${produit.image}')">Ajouter au Panier</button>
       </div>
-    `
+  `
     )
     .join("");
+
   document.querySelectorAll(".details-btn").forEach((button) => {
     button.addEventListener("click", () => {
       const details = button.parentElement.nextElementSibling;
@@ -45,6 +86,7 @@ function afficherProduits(produits) {
     });
   });
 }
+
 if (document.title === "Liste des Appareils photos banger") {
   chargerProduits();
 }
